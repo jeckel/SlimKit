@@ -1,2 +1,2 @@
-# Slim-Startup
-Slim startup module, including Smarty and Eloquent ORM
+# SlimKit
+Slim kit module, including Smarty and Eloquent ORM

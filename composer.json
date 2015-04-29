@@ -1,6 +1,6 @@
 {
-	"name": "Slim Startup",
-	"description": "Slim startup module with Smarty and Eloquent ORM",
+	"name": "SlimKit",
+	"description": "Slim kit module with Smarty and Eloquent ORM",
 	"require": {
 		"php": ">=5.5.0",
 		"slim/slim": "~2.6",
@@ -12,8 +12,8 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"SlimStarter\\": "src/",
-			"SlimStarter\\Test\\": "tests/"
+			"SlimKit\\": "src/",
+			"SlimKit\\Test\\": "tests/"
 		}
 	}
 }
