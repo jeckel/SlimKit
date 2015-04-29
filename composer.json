@@ -1,5 +1,5 @@
 {
-	"name": "SlimKit",
+	"name": "Jeckel/SlimKit",
 	"description": "Slim kit module with Smarty and Eloquent ORM",
 	"require": {
 		"php": ">=5.5.0",
