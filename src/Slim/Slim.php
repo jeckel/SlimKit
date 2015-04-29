@@ -45,8 +45,8 @@ class Slim extends \Slim\Slim
         $this->module = $moduleName;
         $this->controller = $controllerName;
         $this->action = $actionName;
-
-        $controllerClassname = 'Jeckel\\Gallery\\App\\'.ucfirst($moduleName).'\\'.ucfirst($controllerName) . 'Controller';
+        
+        $controllerClassname = $this->config('controller_namespace').ucfirst($moduleName).'\\'.ucfirst($controllerName) . 'Controller';
         $methodName          = $actionName . 'Action';
 
         $action_params = array_merge($this->parseParams($params), $_POST);
