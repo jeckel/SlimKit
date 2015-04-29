@@ -73,11 +73,15 @@ class Bootstrap
         return $this->config;
     }
     
+    /**
+     * 
+     * @return void
+     */
     public function run()
     {
         date_default_timezone_set('Europe/Paris');
         $app = $this->getSlim();
-        return $app->run();
+        $app->run();
     }
     
     /**
@@ -92,6 +96,8 @@ class Bootstrap
         }
         
         $smarty = new Smarty();
+        $smarty->addPluginsDir(__DIR__ . DIRECTORY_SEPARATOR . 'SmartyPluggins');
+        
         if (isset($this->config['smarty'])) {
             $smartyConfig = $this->config['smarty'];
             if (isset($smartyConfig['templates_path'])) {
@@ -116,6 +122,10 @@ class Bootstrap
         return $this->view;
     }
     
+    /**
+     * 
+     * @return Slim
+     */
     public function getSlim()
     {
         if ($this->app instanceof Slim) {

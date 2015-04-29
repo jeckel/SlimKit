@@ -11,23 +11,44 @@ use Slimkit\Slim\Slim;
 
 abstract class AbstractController
 {
+    /**
+     *
+     * @var Slim
+     */
     protected $app;
     
-    protected $params;
+    /**
+     *
+     * @var array
+     */
+    protected $params = [];
     
+    /**
+     * 
+     * @param Slim $app
+     * @param type $params
+     */
     public function __construct(Slim $app, $params)
     {
         $this->app = $app;
         $this->params = $params;
     }
     
+    /**
+     * Called before all actions
+     * 
+     * @return void
+     */
     public function beforeActionProcess()
     {
-        
     }
     
+    /**
+     * Called after all actions
+     * 
+     * @return void
+     */
     public function afterActionProcess()
     {
-        
     }
 }
