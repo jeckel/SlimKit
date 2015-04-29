@@ -51,11 +51,14 @@ class Slim extends \Slim\Slim
 
         $action_params = array_merge($this->parseParams($params), $_POST);
         $controller = new $controllerClassname($this, $action_params);
+        
         $this->view()->setTemplate(
             strtolower($moduleName) . DIRECTORY_SEPARATOR . strtolower($controllerName) . DIRECTORY_SEPARATOR . strtolower($actionName) . '.tpl'
         );
         $this->view()->appendData(array('slim' => $this));
+
         try {
+            $controller->init();
             $controller->beforeActionProcess();
             $controller->$methodName();
             $controller->afterActionProcess();

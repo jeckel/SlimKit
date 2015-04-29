@@ -8,6 +8,7 @@
 namespace Slimkit\Slim;
 
 use Slimkit\Slim\Slim;
+use Slimkit\Slim\View\SmartyView;
 
 abstract class AbstractController
 {
@@ -16,6 +17,12 @@ abstract class AbstractController
      * @var Slim
      */
     protected $app;
+    
+    /**
+     *
+     * @var SmartyView
+     */
+    protected $view;
     
     /**
      *
@@ -31,7 +38,15 @@ abstract class AbstractController
     public function __construct(Slim $app, $params)
     {
         $this->app = $app;
+        $this->view = $this->app->view;
         $this->params = $params;
+    }
+
+    /**
+     * Initialize controller just after instanciation
+     */
+    public function init()
+    {
     }
     
     /**
