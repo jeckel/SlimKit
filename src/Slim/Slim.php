@@ -67,7 +67,9 @@ class Slim extends \Slim\Slim
             $controller->afterActionProcess();
             echo $this->view->render();
         } catch(\Exception $e) {
-            var_dump($e);
+            $controller->errorException($e);
+            echo $this->view->render();
+
             /*$errorParams = $this->parseParams($params);
             $errorParams = array_merge(
                 $action_params, array(

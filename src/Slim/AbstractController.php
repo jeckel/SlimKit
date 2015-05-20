@@ -76,7 +76,7 @@ abstract class AbstractController
      * @param string $returnPage
      * @param string $errorCode
      */
-    protected function error($errorMessage, $returnPage = null, $errorCode = null)
+    public function error($errorMessage, $returnPage = null, $errorCode = null)
     {
         $this->view->setData(
             [
@@ -85,7 +85,24 @@ abstract class AbstractController
                 'returnPage'   => $returnPage
             ]
         );
-        $this->view->setTemplate('global/error.tpl');
+        $this->view->setTemplate($this->getErrorTemplate());
+    }
+
+    /**
+     * Display exception error page
+     *
+     * @param \Exception $e
+     */
+    public function errorException(\Exception $e)
+    {
+        $this->view->setData(
+            [
+                'errorMessage' => $e->getMessage(),
+                'errorCode'    => $e->getCode(),
+                'exception'    => $e
+            ]
+        );
+        $this->view->setTemplate($this->getErrorTemplate());
     }
 
     /**
