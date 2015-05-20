@@ -12,6 +12,10 @@ use Slimkit\Slim\View\SmartyView;
 
 abstract class AbstractController
 {
+    const FLASH_ERROR   = 'error';
+    const FLASH_WARNING = 'warning';
+    const FLASH_SUCCESS = 'success';
+
     /**
      * @var Slim
      */
@@ -111,5 +115,17 @@ abstract class AbstractController
     protected function getErrorTemplate()
     {
         return $this->errorTemplate;
+    }
+
+    /**
+     * Append new flash message
+     * @param string $level
+     * @param string $message
+     */
+    protected function flash($level, $message)
+    {
+        static $flash = [];
+        $this->flash[$level][] = $message;
+        $this->app->flash($level,  $this->flash[$level]);
     }
 }

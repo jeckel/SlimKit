@@ -12,7 +12,6 @@ use Illuminate\Container\Container;
 use Illuminate\Events\Dispatcher;
 use Slimkit\Slim\Slim;
 use Slimkit\Slim\View\SmartyView;
-use Smarty;
 
 class Bootstrap
 {
@@ -95,7 +94,7 @@ class Bootstrap
             return $this->view;
         }
 
-        $smarty = new Smarty();
+        $smarty = new \SmartyBC();
         $smarty->addPluginsDir(__DIR__ . DIRECTORY_SEPARATOR . 'SmartyPluggins');
 
         if (isset($this->config['smarty'])) {
