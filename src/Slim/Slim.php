@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -45,13 +45,16 @@ class Slim extends \Slim\Slim
         $this->module = $moduleName;
         $this->controller = $controllerName;
         $this->action = $actionName;
-        
-        $controllerClassname = $this->config('controller_namespace').ucfirst($moduleName).'\\'.ucfirst($controllerName) . 'Controller';
+
+        $controllerClassname = $this->config('controller_namespace')
+            . str_replace(' ', '', ucwords(str_replace('_', ' ', $moduleName))) . '\\'
+            . str_replace(' ', '', ucwords(str_replace('_', ' ', $controllerName)))
+            . 'Controller';
         $methodName          = $actionName . 'Action';
 
         $action_params = array_merge($this->parseParams($params), $_POST);
         $controller = new $controllerClassname($this, $action_params);
-        
+
         $this->view()->setTemplate(
             strtolower($moduleName) . DIRECTORY_SEPARATOR . strtolower($controllerName) . DIRECTORY_SEPARATOR . strtolower($actionName) . '.tpl'
         );
@@ -77,7 +80,7 @@ class Slim extends \Slim\Slim
             $errorController = new ErrorController($this, $errorParams);
             $errorController->exceptionAction();*/
         }
-    }   // function dispatchController    
+    }   // function dispatchController
 
     /**
      * Parse list parameters into an arry with param[n] as key and param[n+1] as value
@@ -97,7 +100,7 @@ class Slim extends \Slim\Slim
             }
         }
         return $toReturn;
-    }   // function parseParams    
+    }   // function parseParams
 
     /**
      * Override urlFor method to add default module/controller/action with default route
@@ -123,5 +126,5 @@ class Slim extends \Slim\Slim
             }
         }
         return parent::urlFor($name, $params);
-    }   // function urlFor    
+    }   // function urlFor
 }
